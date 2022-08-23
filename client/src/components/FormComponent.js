@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NavbarComponent from "./NavbarComponent";
+import axios from "axios";
 const FormComponent = () => {
   const [state, setState] = useState({
     title: "",
@@ -15,8 +16,13 @@ const FormComponent = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    // console.log({ title, content, author })
     console.log("API URL",process.env.REACT_APP_API)
+    axios.post(`${process.env.REACT_APP_API}/create`,{title,content,author})
+    .then(response=> {
+      alert("บันทึกข้อมูลเรียบร้อย")
+    }).catch(err=>{
+      alert(err.response.data.error)
+    })
     }
 
     return (
