@@ -25,3 +25,10 @@ exports.create = (req, res) => {
         res.json(blog)
     })
 }
+
+//ดึงข้อมูลบทความทั้งหมด
+exports.getAllblogs=(req,res)=>{
+    Blogs.find({}).exec((err,blogs)=>{
+        res.json(blogs)
+    })
+}
