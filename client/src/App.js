@@ -19,7 +19,15 @@ function App() {
   return (
     <div className="container p-5">
       <NavbarComponent />
-      {JSON.stringify(blogs)}
+      {blogs.map((blog,index) => (
+        <div className='row' key={index} style={{borderBottom:'1px solid silver'}}>
+          <div className='col pt-3 pb-2'>
+            <h2>{blog.title}</h2>
+            <p>{blog.content.substring(0,250)}</p>
+            <p className='text-muted'>ผู้เขียน: {blog.author} , เผยแพร่ : {blog.createdAt}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
