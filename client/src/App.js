@@ -24,7 +24,7 @@ function App() {
           <div className='col pt-3 pb-2'>
             <h2>{blog.title}</h2>
             <p>{blog.content.substring(0,250)}</p>
-            <p className='text-muted'>ผู้เขียน: {blog.author} , เผยแพร่ : {blog.createdAt}</p>
+            <p className='text-muted'>ผู้เขียน: {blog.author} , เผยแพร่ : {new Date(blog.createdAt).toLocaleDateString()}</p>
           </div>
         </div>
       ))}
