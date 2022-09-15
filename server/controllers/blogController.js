@@ -53,3 +53,13 @@ exports.remove=(req,res)=>{
         })
     })
 }
+
+exports.update=(req,res)=>{
+    const {slug} = req.params
+    //ส่งข้อมูล => title, content, author
+    const { title, content, author} = req.body
+    Blogs.findOneAndUpdate({slug},{title,content,author},{new:true}).exec((err,blog)=>{
+        if(err) console.log(err)
+        res.json(blog)
+    })
+}
