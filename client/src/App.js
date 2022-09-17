@@ -52,7 +52,7 @@ function App() {
             <Link to={`/blog/${blog.slug}`}><h2>{blog.title}</h2></Link>
             <p>{blog.content.substring(0,250)}</p>
             <p className='text-muted'>ผู้เขียน: {blog.author} , เผยแพร่ : {new Date(blog.createdAt).toLocaleDateString()}</p>
-            <button className="btn btn-outline-success">แก้ไขบทความ</button>&nbsp;
+            <Link className="btn btn-outline-success" to={`/blog/edit/${blog.slug}`}>แก้ไขบทความ</Link>&nbsp;
             <button className="btn btn-outline-danger" onClick={()=>confirmDelete(blog.slug)}>ลบบทความ</button>
           </div>
         </div>
