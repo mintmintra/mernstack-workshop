@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import NavbarComponent from "./NavbarComponent";
 import axios from "axios";
 import Swal from 'sweetalert2'
-const EditComponent = () => {
+const EditComponent = (props) => {
   const [state, setState] = useState({
     title: "",
     content: "",
-    author:""
+    author:"",
+    slug:""
   })
   const {title,content,author} = state
+
+  //ดึงข้อมูลบทความที่ต้องการแก้ไข
+  useEffect(()=>{
+    axios
+    .get(`${process.env.REACT_APP_API}/blog/${props.match.params.slug}`)
+    .then(response=>{
+        const {title,content,author,slug} = response.data
+        setState({...state,title,content,author,slug})
+    })
+    .catch(err=>alert(err))
+    // eslint-disable-next-line
+},[])
 
   //กำหนดค่าให้กับ State
   const inputValue = name => event => {
@@ -39,6 +52,7 @@ const EditComponent = () => {
       <div className="container p-5">
         <NavbarComponent />
         <h1 className="mt-2 mb-3 text-center">แก้ไขบทความ</h1>
+        {JSON.stringify(state)}
     </div>
   );
 }
