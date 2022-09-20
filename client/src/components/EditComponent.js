@@ -23,13 +23,32 @@ const EditComponent = (props) => {
     // eslint-disable-next-line
 },[])
 
+  const showUpdateForm=()=>(
+    <form onSubmit={submitForm}>
+          <div className="form-group">
+            <label>ชื่อบทความ</label>
+            <input type="text" className="form-control mt-2 mb-3" value={title} onChange={inputValue("title")} />
+          </div>
+          <div className="form-group">
+            <label>รายละเอียด</label>
+            <textarea className="form-control mt-2 mb-3" value={content} onChange={inputValue("content")}></textarea>
+          </div>
+          <div className="form-group">
+            <label>ผู้แต่ง</label>
+            <input type="text" className="form-control mt-2 mb-3" value={author} onChange={inputValue("author")} />
+          </div>
+            <br />
+          <input type="submit" value="อัพเดต" className="btn btn-primary" />
+        </form>
+  )
+
   //กำหนดค่าให้กับ State
   const inputValue = name => event => {
     setState({ ...state, [name]: event.target.value });
   }
 
   const submitForm = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     // console.log("API URL",process.env.REACT_APP_API)
     // axios.post(`${process.env.REACT_APP_API}/create`,{title,content,author})
     // .then(response=> {
@@ -52,7 +71,7 @@ const EditComponent = (props) => {
       <div className="container p-5">
         <NavbarComponent />
         <h1 className="mt-2 mb-3 text-center">แก้ไขบทความ</h1>
-        {JSON.stringify(state)}
+        {showUpdateForm()}
     </div>
   );
 }
