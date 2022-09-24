@@ -9,7 +9,7 @@ const EditComponent = (props) => {
     author:"",
     slug:""
   })
-  const {title,content,author} = state
+  const {title,content,author,slug} = state
 
   //ดึงข้อมูลบทความที่ต้องการแก้ไข
   useEffect(()=>{
@@ -52,18 +52,16 @@ const EditComponent = (props) => {
     console.log("API URL",process.env.REACT_APP_API)
     axios.put(`${process.env.REACT_APP_API}/blog/${slug}`,{title,content,author})
     .then(response=> {
-      Swal.fire(
+      Swal.fire( 
         'แจ้งเตือน',
-        'บันทึกข้อมูลบทความเรียบร้อย',
+        'อัพเดตบทความเรียบร้อย',
         'success'
       )
-      setState({...state,title:"",content:"",author:""})
+      const {title,content,author,slug} = response.data
+      setState({...state,title,author,content,slug})
+      
     }).catch(err=>{
-      Swal.fire(
-        'แจ้งเตือน',
-        err.response.data.error,
-        'error'
-      )
+      alert(err)
     })
     }
 
