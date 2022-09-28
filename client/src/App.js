@@ -51,7 +51,7 @@ function App() {
         <div className='row' key={index} style={{borderBottom:'1px solid silver'}}>
           <div className='col pt-3 pb-2'>
             <Link to={`/blog/${blog.slug}`}><h2>{blog.title}</h2></Link>
-            <p>{blog.content.substring(0,250)}</p>
+            <div className="pt-3">{renderHTML(blog.content.substring(0,250))}</div>
             <p className='text-muted'>ผู้เขียน: {blog.author} , เผยแพร่ : {new Date(blog.createdAt).toLocaleDateString()}</p>
             <Link className="btn btn-outline-success" to={`/blog/edit/${blog.slug}`}>แก้ไขบทความ</Link>&nbsp;
             <button className="btn btn-outline-danger" onClick={()=>confirmDelete(blog.slug)}>ลบบทความ</button>
