@@ -15,7 +15,13 @@ const LoginComponent = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.table({username,password})
+    axios
+    .post(`${process.env.REACT_APP_API}/login`,{username,password})
+    .then(response =>{
+      console.log(response)
+    }).catch(err=>{
+      console.log(err)
+    })
     }
   return (
     <div className="container p-5">
