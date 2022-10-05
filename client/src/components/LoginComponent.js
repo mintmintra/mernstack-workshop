@@ -2,6 +2,7 @@ import React from 'react'
 import NavbarComponent from "./NavbarComponent";
 import { useState } from "react";
 import axios from "axios"
+import Swal from 'sweetalert2'
 
 const LoginComponent = () => {
   const [state, setState] = useState({
@@ -20,7 +21,11 @@ const LoginComponent = () => {
     .then(response =>{
       console.log(response)
     }).catch(err=>{
-      console.log(err)
+      Swal.fire(
+        'แจ้งเตือน',
+        err.response.data.error,
+        'error'
+      )
     })
     }
   return (
