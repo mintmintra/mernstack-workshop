@@ -1,9 +1,9 @@
 import React from 'react'
 import NavbarComponent from "./NavbarComponent";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios"
 import Swal from 'sweetalert2'
-import { authenticate } from "../services/authorize"
+import { authenticate, getUser } from "../services/authorize"
 import {withRouter} from "react-router-dom"
 
 const LoginComponent = (props) => {
@@ -31,6 +31,9 @@ const LoginComponent = (props) => {
       )
     })
     }
+    useEffect(()=>{
+      getUser() && props.history.push("/")
+    },[])
   return (
     <div className="container p-5">
         <NavbarComponent />
