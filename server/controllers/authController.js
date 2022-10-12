@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken")
+const expressJWT = require("express-jwt")
+
 exports.login=(req,res)=>{
     //ข้อมูล username, password
     const {username,password} = req.body
@@ -11,3 +13,10 @@ exports.login=(req,res)=>{
     }
     
 }
+
+//ตรวจสอย token
+exports.requireLogin=expressJWT({
+    secret:process.env.JWT_SECRET,
+    algorithms:["HS256"],
+    userProperty:"auth"
+})
